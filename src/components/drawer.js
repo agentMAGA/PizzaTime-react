@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./drawer.module.scss";
 
-function Drawer({onClose , items = []}) {
+function Drawer({onClose, onRemoveItem, items = []}) {
   return (
     <div className={styles.overlay} style={{ display: 'block' }}>
       <div className={styles.drawer}>
@@ -14,7 +14,7 @@ function Drawer({onClose , items = []}) {
         <div className={styles.cardItemList}>
           <div className={styles.cardItemTop}>
 
-            {items.map((item) => (
+            {items.map((item, index) => (
             
             <div className={styles.cardItem}>
               <img src={item.imgUrl} />
@@ -25,7 +25,7 @@ function Drawer({onClose , items = []}) {
                 </div>
               </div>
               <div className={styles.cardItemPizzaButton}>
-                <img src="/img/button-remove.svg"  />
+                <img src="/img/button-remove.svg" onClick={() => onRemoveItem(index)}/>
               </div>
             </div>
             ))}

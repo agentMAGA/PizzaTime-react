@@ -1,14 +1,12 @@
 import styles from "./card.module.scss";
 import React from "react";
 
-function Card({title, price, imgUrl, onClickAddCard}) {
-
-  const [count, setCount] = React.useState(false);
+function Card({title, price, imgUrl, onClickAddCard, isAdded}) {
 
   const onClickAdd = () => {
-    setCount(!count);
     onClickAddCard(title, price, imgUrl);
-  }
+  };
+  
 
 
 
@@ -20,10 +18,10 @@ function Card({title, price, imgUrl, onClickAddCard}) {
       <div className={styles.price}>
         <span>от</span>
         <b>{price} руб.</b>
-        <button  onClick={onClickAdd} className={count ? styles.buttonTrue : styles.buttonFalse}>
-          <img src={count ? "/img/plus-orange.svg" : "/img/plus-white.svg"} alt="plus" />
+        <button  onClick={onClickAdd} className={isAdded ? styles.buttonTrue : styles.buttonFalse}>
+          <img src={isAdded  ? "/img/plus-orange.svg" : "/img/plus-white.svg"} alt="plus" />
 
-          <p>{count ? "Добавлено" : "Добавить"}</p>
+          <p>{isAdded ? "Добавлено" : "Добавить"}</p>
           {/* <span>2</span> */}
         </button>
       </div>

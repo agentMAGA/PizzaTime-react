@@ -8,8 +8,8 @@ function Header(props) {
     <div className="headerLeft">
       <img src="/img/logo.svg"></img>
       <div className="headerLeftText">
-        <h1>React Pizza</h1>
-        <p>Самая вкусная пицца во вселенной</p>
+        <h1>Pizza Time</h1>
+        <p>Самая вкусная пицца в Чечне</p>
       </div>
     </div>
 

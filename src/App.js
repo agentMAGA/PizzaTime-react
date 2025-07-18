@@ -17,12 +17,12 @@ function App() {
   const [cardOpened, setCardOpened] = React.useState(false);
 
   React.useEffect(() => {
-  fetch("https://687779a8dba809d901ef8e66.mockapi.io/test/items").then((res) => {
-    return res.json();
-  }).then((json) => {
-    setItems(json);
-  });
-}, []);
+    fetch("https://687779a8dba809d901ef8e66.mockapi.io/test/items").then((res) => {
+      return res.json();
+    }).then((json) => {
+      setItems(json);
+    });
+  }, []);
 
 
 
@@ -35,11 +35,19 @@ function App() {
 
 
 
-          {cardOpened ? <Drawer items={cardItems}       onClose={() => setCardOpened(false)}/> : null}
+      {cardOpened ? (
+        <Drawer
+          items={cardItems}
+          onClose={() => setCardOpened(false)}
+          onRemoveItem={(index) => {
+            setCardItems(prev => prev.filter((_, i) => i !== index));
+          }}
+        />
+      ) : null}
 
 
-      <Header 
-      onClickCard={() => setCardOpened(true)}
+      <Header
+        onClickCard={() => setCardOpened(true)}
 
       />
 
@@ -56,13 +64,22 @@ function App() {
 
         <div className={styles.allCard}>
 
-          {items.map((item) => (
-            <Card 
-            title={item.title}
-            price={item.price}
-            imgUrl={item.imgUrl}
-            onClickAddCard={() => setCardItems([...cardItems, item])}
-            
+          {items.map((item, index) => (
+            <Card
+              key={index}
+              title={item.title}
+              price={item.price}
+              imgUrl={item.imgUrl}
+              onClickAddCard={() => {
+                if (cardItems.find((cartItem) => cartItem.title === item.title)) {
+                  setCardItems(cardItems.filter((cartItem) => cartItem.title !== item.title));
+                } else {
+                  setCardItems([...cardItems, item]);
+                }
+              }}
+              isAdded={cardItems.some((cartItem) => cartItem.title === item.title)}
+
+
             />
           ))}
 
