@@ -1,0 +1,84 @@
+.allCard {
+
+    display: flex;
+
+    .card {
+        border: 1px solid #000000;
+        border-radius: 50px;
+        padding: 30px;
+        text-align: center;
+        margin: 20px;
+        transition: box-shadov 0.2s ease-in-out, transform 0.2s;
+
+        &:hover {
+            box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.06);
+            transform: translateY(-5px);
+        }
+
+
+
+        .cardBottom {
+            display: flex;
+            justify-content: center;
+
+            .price {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+
+                p {
+                    margin-left: 12px;
+                }
+
+                b {
+                    margin-left: 5px;
+                }
+
+
+                .buttonFalse {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    padding: 12px 10px 12px 10px;
+                    font-family: 'Raleway', sans-serif;
+                    font-size: 20px;
+                    margin: 10px 5px 5px 10px;
+                    cursor: pointer;
+                    background-color: #f5872d;
+                    border: #d36a15 solid 1px;
+                    border-radius: 20px;
+                    color: #ffffff;
+
+                    span {
+                        display: inline-block;
+                        text-align: center;
+                        margin: 5px;
+                        width: 25px;
+                        height: 25px;
+
+                        border: #d36a15 solid 1px;
+                        border-radius: 15px;
+                    }
+
+                }
+
+                .buttonTrue {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    padding: 12px 10px 12px 10px;
+                    font-family: 'Raleway', sans-serif;
+                    font-size: 20px;
+                    margin: 10px 5px 5px 10px;
+                    cursor: pointer;
+                    background-color: #ffffff;
+                    border: #d36a15 solid 1px;
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+}

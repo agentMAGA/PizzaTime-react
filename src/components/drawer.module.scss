@@ -1,0 +1,161 @@
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+
+    .drawer {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+
+        padding: 10px 30px 30px 30px;
+        position: absolute;
+        width: 600px;
+        height: 96.5%;
+        right: 0;
+        background-color: #ffffff;
+        box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.01);
+
+
+        .drawerHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            img:hover {
+                cursor: pointer;
+            }
+        }
+
+
+
+        .cardItemTop {
+            order: 0;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+
+
+
+
+
+
+
+            .cardItem {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                border: 1px solid #5a5050;
+                border-radius: 24px;
+                margin: 16px 0;
+                padding: 24px;
+                background: #fff;
+            }
+
+            .cardItem>img {
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 16px;
+                margin-right: 20px;
+            }
+
+            .cardItemPizza {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                min-width: 0;
+            }
+
+            .cardItemPizzaText {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 4px;
+            }
+
+            .cardItemPizzaButton {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+            }
+
+            .cardItemPizzaButton img {
+                width: 32px;
+                height: 32px;
+                cursor: pointer;
+                transition: filter 0.2s;
+            }
+
+            .cardItemPizzaButton img:hover {
+                filter: brightness(0.8);
+            }
+        }
+    }
+
+    .Item {
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
+
+        ul {
+            list-style: none;
+
+            li {
+                display: flex;
+                justify-content: space-between;
+
+                span {
+                    text-align: center;
+                }
+
+                b {
+                    text-align: right;
+                }
+
+            }
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            padding: 12px 10px 12px 10px;
+            background-color: #ffffff;
+            border: #d36a15 solid 1px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 20px;
+        }
+
+        ul li span {
+            font-weight: bold;
+        }
+
+        ul li b {
+            font-weight: bold;
+        }
+
+    }
+
+    .cardItemList {
+        flex: 1;
+        width: 100%;
+        height: 1px;
+        border-bottom: #e0e0e0 solid 1px;
+        margin: 20px 0;
+        max-height: 89%;
+        overflow-y: auto;
+    }
+}
+

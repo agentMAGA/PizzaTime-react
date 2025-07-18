@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Raleway', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body {
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  font-size: 22px;
+  background-color: #ffffff;
+
+
+
+  
+
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: #494949 solid 1PX;
+    padding: 10px;
+
+
+    .headerLeft {
+      display: flex;
+      padding: 5px;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 35px;
+        height: 35px;
+        padding: 5px;
+      }
+
+      .headerLeftText {
+        padding: 0px;
+        margin: 5px;
+
+
+        p {
+          color: #7B7B7B;
+        }
+      }
+
+    }
+
+    .headerRight {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      nav {
+        background-color: red;
+        color: #ffffff;
+        border-radius: 20px;
+        list-style: none;
+        margin: 5px;
+        padding: 2px;
+
+        ul {
+          display: flex;
+
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          gap: 15px;
+
+          img {
+            width: 20px;
+            height: 20px;
+            padding: 5px;
+          }
+
+          li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+          }
+
+
+        }
+
+      }
+    }
+  }
+
+  .input-pizza {
+
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+
+
+    .search-block {
+      display: flex;
+      align-items: center;
+      border: #b9b5b5 solid 1px;
+      border-radius: 15px;
+      padding: 0 15px;
+
+      input,
+      input:focus {
+        border: 0;
+        outline: none;
+      }
+
+
+    }
+  }
+
+
+
+
+  .cardItemList {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+}
