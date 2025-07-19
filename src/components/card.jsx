@@ -1,16 +1,19 @@
-import styles from "./card.module.scss";
+import styles from "../styles/card.module.scss";
 import React from "react";
 
+// Карточка пиццы
 function Card({title, price, imgUrl, onClickAddCard, isAdded}) {
 
+  // Добавление в корзину 
   const onClickAdd = () => {
-    onClickAddCard(title, price, imgUrl);
+    onClickAddCard();
   };
   
 
 
 
   return (
+    
     <div className={styles.card}>
     <img src={imgUrl} width={383} height={383}></img>
     <p>{title}</p>

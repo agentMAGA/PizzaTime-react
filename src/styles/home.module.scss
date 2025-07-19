@@ -1,0 +1,24 @@
+  // Поиск пиццы
+  .inputPizza {
+
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+
+
+    .searchBlock {
+      display: flex;
+      align-items: center;
+      border: #b9b5b5 solid 1px;
+      border-radius: 15px;
+      padding: 0 15px;
+
+      input,
+      input:focus {
+        border: 0;
+        outline: none;
+      }
+
+
+    }
+  }

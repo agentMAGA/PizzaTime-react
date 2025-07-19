@@ -1,8 +1,13 @@
-import Card from "./Card/card";
 import Header from "./components/header";
 import Drawer from "./components/drawer";
-import styles from "../src/Card/card.module.scss";
 import React from "react";
+import axios from "axios";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/home";
+import Order from "./components/order";
+
+
+
 
 
 
@@ -10,22 +15,49 @@ import React from "react";
 
 
 function App() {
+  // Все пиццы
   const [items, setItems] = React.useState([]);
 
+  // Корзина
   const [cardItems, setCardItems] = React.useState([]);
 
+  // Поиск пиццы
+  const [searchValue, setSearchValue] = React.useState("");
+
+  // Корзина открыта
   const [cardOpened, setCardOpened] = React.useState(false);
 
+  // Загрузка пицц
   React.useEffect(() => {
-    fetch("https://687779a8dba809d901ef8e66.mockapi.io/test/items").then((res) => {
-      return res.json();
-    }).then((json) => {
-      setItems(json);
+    axios.get("https://687779a8dba809d901ef8e66.mockapi.io/test/items").then((res) => {
+      setItems(res.data);
+    });
+    axios.get("https://687779a8dba809d901ef8e66.mockapi.io/test/card").then((res) => {
+      setCardItems(res.data);
     });
   }, []);
 
+  // Добавление в корзину
+  const onAddToCard = (obj) => {
+    axios.post("https://687779a8dba809d901ef8e66.mockapi.io/test/card", obj).then((res) => {
+      setCardItems(prev => [...prev, res.data]);
+    });
+  }
+
+  // Удаление из корзины
+  const onRemoveItem = (id) => {
+    axios.delete(`https://687779a8dba809d901ef8e66.mockapi.io/test/card/${id}`).then((res) => {
+      setCardItems(prev => prev.filter((item) => item.id !== id));
+    }).catch((error) => {
+      console.error('Ошибка при удалении:', error);
+    });
+  }
 
 
+  // Поиск пиццы
+  const onSearchValue = (event) => {
+    setSearchValue(event.target.value);
+  }
 
 
 
@@ -35,59 +67,41 @@ function App() {
 
 
 
+      {/* Корзина */}
       {cardOpened ? (
         <Drawer
+
           items={cardItems}
           onClose={() => setCardOpened(false)}
-          onRemoveItem={(index) => {
-            setCardItems(prev => prev.filter((_, i) => i !== index));
-          }}
+          onRemove={onRemoveItem}
         />
       ) : null}
 
 
+      {/* Шапка */}
       <Header
         onClickCard={() => setCardOpened(true)}
-
       />
 
-      <div className="content">
+      <Routes>
 
-        <div className="input-pizza">
-          <h1>Все пиццы</h1>
+        <Route path="/" element={
+        <Home
+          items={items}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          onSearchValue={onSearchValue}
+          onAddToCard={onAddToCard}
+          cardItems={cardItems}
+          setCardItems={setCardItems}
+        />
+          } exact/>
 
-          <div className="search-block">
-            <img src="/img/search.png"></img>
-            <input placeholder="Поиск..."></input>
-          </div>
-        </div>
+          <Route path="/order" element={<Order />} exact/>
 
-        <div className={styles.allCard}>
-
-          {items.map((item, index) => (
-            <Card
-              key={index}
-              title={item.title}
-              price={item.price}
-              imgUrl={item.imgUrl}
-              onClickAddCard={() => {
-                if (cardItems.find((cartItem) => cartItem.title === item.title)) {
-                  setCardItems(cardItems.filter((cartItem) => cartItem.title !== item.title));
-                } else {
-                  setCardItems([...cardItems, item]);
-                }
-              }}
-              isAdded={cardItems.some((cartItem) => cartItem.title === item.title)}
+      </Routes>
 
 
-            />
-          ))}
-
-
-
-
-        </div>
-      </div>
     </div>
   );
 }

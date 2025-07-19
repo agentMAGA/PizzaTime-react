@@ -1,0 +1,72 @@
+// Шапка
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: #494949 solid 1PX;
+    padding: 10px;
+
+
+    .headerLeft {
+      display: flex;
+      padding: 5px;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 35px;
+        height: 35px;
+        padding: 5px;
+      }
+
+      .headerLeftText {
+        padding: 0px;
+        margin: 5px;
+
+
+        p {
+          color: #7B7B7B;
+        }
+      }
+
+    }
+
+    .headerRight {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      nav {
+        background-color: red;
+        color: #ffffff;
+        border-radius: 20px;
+        list-style: none;
+        margin: 5px;
+        padding: 2px;
+
+        ul {
+          display: flex;
+
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          gap: 15px;
+
+          img {
+            width: 20px;
+            height: 20px;
+            padding: 5px;
+          }
+
+          li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+          }
+
+
+        }
+
+      }
+    }
+  }

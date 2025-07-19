@@ -1,7 +1,11 @@
+// Все пиццы
 .allCard {
 
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
+    // Карточка пиццы
     .card {
         border: 1px solid #000000;
         border-radius: 50px;
@@ -10,6 +14,7 @@
         margin: 20px;
         transition: box-shadov 0.2s ease-in-out, transform 0.2s;
 
+        // При наведении на карточку
         &:hover {
             box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.06);
             transform: translateY(-5px);
@@ -17,25 +22,30 @@
 
 
 
+        // Нижняя часть карточки
         .cardBottom {
             display: flex;
             justify-content: center;
 
+            // Цена
             .price {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 text-align: center;
 
+                // Название
                 p {
                     margin-left: 12px;
                 }
 
+                // Цена
                 b {
                     margin-left: 5px;
                 }
 
 
+                // Кнопка добавления в корзину
                 .buttonFalse {
                     display: flex;
                     justify-content: center;
@@ -64,6 +74,7 @@
 
                 }
 
+                // Кнопка удаления из корзины
                 .buttonTrue {
                     display: flex;
                     justify-content: center;
