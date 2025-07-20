@@ -27,14 +27,25 @@ function App() {
   // Корзина открыта
   const [cardOpened, setCardOpened] = React.useState(false);
 
+  // Рендер пицц
+  const [isLoading, setIsLoading] = React.useState(true);
+
   // Загрузка пицц
   React.useEffect(() => {
-    axios.get("https://687779a8dba809d901ef8e66.mockapi.io/test/items").then((res) => {
+    setIsLoading(true);
+
+    axios.get("https://687779a8dba809d901ef8e66.mockapi.io/test/items")
+    .then((res) => {
       setItems(res.data);
-    });
-    axios.get("https://687779a8dba809d901ef8e66.mockapi.io/test/card").then((res) => {
+    })
+      .finally(() => {
+        setIsLoading(false);
+      });
+    axios.get("https://687779a8dba809d901ef8e66.mockapi.io/test/card")
+    .then((res) => {
       setCardItems(res.data);
-    });
+    })
+    
   }, []);
 
   // Добавление в корзину
@@ -93,7 +104,8 @@ function App() {
           onSearchValue={onSearchValue}
           onAddToCard={onAddToCard}
           cardItems={cardItems}
-          setCardItems={setCardItems}
+          onRemove={onRemoveItem}
+          isLoading={isLoading}
         />
           } exact/>
 
