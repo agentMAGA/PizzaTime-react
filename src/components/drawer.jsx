@@ -1,9 +1,15 @@
 import React from "react";
 import styles from "../styles/drawer.module.scss";
+import { AppContext } from "../App";
+import { Link } from "react-router-dom";
 
 // Корзина
-function Drawer({ onClose, onRemove, onRemoveItem, items = [] }) {
+function Drawer({ onClose }) {
+
+  const state = React.useContext(AppContext);
+
   return (
+
     <div className={styles.overlay} style={{ display: 'block' }}>
       <div className={styles.drawer}>
         {/* Заголовок корзины */}
@@ -13,27 +19,53 @@ function Drawer({ onClose, onRemove, onRemoveItem, items = [] }) {
         </div>
 
         {/* Список пицц в корзине */}
-        {items.length > 0 ? (
-          <div className={styles.cardItemList}>
-            <div className={styles.cardItemTop}>
+        {state.cardItems.length > 0 ? (
 
-              {items.map((item) => (
+          // Корзина не пуста
+          <>
+            <div className={styles.cardItemList}>
+              <div className={styles.cardItemTop}>
 
-                <div className={styles.cardItem}>
-                  <img src={item.imgUrl} />
-                  <div className={styles.cardItemPizza}>
-                    <div className={styles.cardItemPizzaText}>
-                      <p>{item.title}</p>
-                      <b>от {item.price} руб.</b>
+                {state.cardItems.map((item) => (
+
+                  <div className={styles.cardItem}>
+                    <img src={item.imgUrl} />
+                    <div className={styles.cardItemPizza}>
+                      <div className={styles.cardItemPizzaText}>
+                        <p>{item.title}</p>
+                        <b>от {item.price} руб.</b>
+                      </div>
+                    </div>
+                    <div className={styles.cardItemPizzaButton}>
+                      <img src="/img/button-remove.svg" onClick={() => state.onRemoveItem(item.id)} />
                     </div>
                   </div>
-                  <div className={styles.cardItemPizzaButton}>
-                    <img src="/img/button-remove.svg" onClick={() => onRemove(item.id)} />
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+
+            {/* Итого */}
+            <div className={styles.Item}>
+              <ul>
+                <li>
+                  <span>Итого:</span>
+                  <div></div>
+                  <b>250 руб.</b>
+                </li>
+                <li>
+                  <span>Налог 5%:</span>
+                  <div></div>
+                  <b>12.50 руб.</b>
+                </li>
+              </ul>
+              {/* Оформить заказ */}
+              <Link to="/order">
+                <button className={styles.button} onClick={onClose}>Оформить заказ</button>
+              </Link>
+            </div>
+
+          </>
+
         ) :
           // Корзина пуста
           (
@@ -42,21 +74,6 @@ function Drawer({ onClose, onRemove, onRemoveItem, items = [] }) {
             </div>
           )}
 
-        {/* Итого */}
-        <div className={styles.Item}>
-          <ul>
-            <li>
-              <span>Итого:</span>
-              <div></div>
-              <b>250 руб.</b>
-            </li>
-            <li>
-              <span>Налог 5%:</span>
-              <div></div>
-              <b>12.50 руб.</b>
-            </li>
-          </ul>
-        </div>
 
       </div>
     </div>

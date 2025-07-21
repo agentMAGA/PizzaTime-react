@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "../styles/header.module.scss";
+import { Link } from "react-router-dom";
 
 function Header(props) {
   return (
     // Шапка
     <header className={styles.header} >
       {/* Левая часть шапки */}
+      <Link className={styles.headerLeft} to="/">
     <div className={styles.headerLeft}>
       <img src="/img/logo.svg"></img>
       <div className={styles.headerLeftText}>
@@ -13,6 +15,7 @@ function Header(props) {
         <p>Самая вкусная пицца в Чечне</p>
       </div>
     </div>
+    </Link>
 
     {/* Правая часть шапки */}
     <div className={styles.headerRight}>

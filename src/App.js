@@ -7,6 +7,7 @@ import Home from "./components/home";
 import Order from "./components/order";
 
 
+export const AppContext = React.createContext({});
 
 
 
@@ -27,7 +28,7 @@ function App() {
   // Корзина открыта
   const [cardOpened, setCardOpened] = React.useState(false);
 
-  // Рендер пицц
+  // Рендер заглушек
   const [isLoading, setIsLoading] = React.useState(true);
 
   // Загрузка пицц
@@ -74,6 +75,23 @@ function App() {
 
 
   return (
+    <AppContext.Provider value={{
+      cardItems,
+      setCardItems,
+      items,
+      setItems,
+      cardOpened,
+      setCardOpened,
+      onAddToCard,
+      onRemoveItem,
+      onSearchValue,
+      searchValue,
+      isLoading,
+      setIsLoading,
+      setSearchValue,
+
+    }}>
+      {/* Главный контейнер */}
     <div className="App">
 
 
@@ -82,9 +100,9 @@ function App() {
       {cardOpened ? (
         <Drawer
 
-          items={cardItems}
+
           onClose={() => setCardOpened(false)}
-          onRemove={onRemoveItem}
+
         />
       ) : null}
 
@@ -97,16 +115,7 @@ function App() {
       <Routes>
 
         <Route path="/" element={
-        <Home
-          items={items}
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          onSearchValue={onSearchValue}
-          onAddToCard={onAddToCard}
-          cardItems={cardItems}
-          onRemove={onRemoveItem}
-          isLoading={isLoading}
-        />
+        <Home/>
           } exact/>
 
           <Route path="/order" element={<Order />} exact/>
@@ -115,6 +124,7 @@ function App() {
 
 
     </div>
+    </AppContext.Provider>
   );
 }
 

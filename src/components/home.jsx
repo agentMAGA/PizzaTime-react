@@ -1,15 +1,20 @@
+import React from "react";
 import Card from "./card";
 import styles from "../styles/card.module.scss";
 import stylesHome from "../styles/home.module.scss";
+import { AppContext } from "../App";
 
 
 
-function Home({items, searchValue, setSearchValue, onSearchValue, onAddToCard, cardItems, onRemove , isLoading}  ) {
+
+function Home(  ) {
+
+  const state = React.useContext(AppContext);
 
   // Рендер пицц
   const renderItems = () => {
     
-      if (isLoading === true) {
+      if (state.isLoading) {
     // Показываем заглушки (например 6 скелетов)
     return (
       <div className={styles.allCard}>
@@ -20,8 +25,8 @@ function Home({items, searchValue, setSearchValue, onSearchValue, onAddToCard, c
     );
   }
 
-    return items
-          .filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+    return state.items
+          .filter((item) => item.title.toLowerCase().includes(state.searchValue.toLowerCase()))
           .map((item, id) => (
             // Карточка пиццы
             <Card
@@ -31,17 +36,17 @@ function Home({items, searchValue, setSearchValue, onSearchValue, onAddToCard, c
               price={item.price}
               imgUrl={item.imgUrl}
               onClickAddCard={() => {
-                const foundItem = cardItems.find(cartItem => cartItem.title === item.title);
+                const foundItem = state.cardItems.find(cartItem => cartItem.title === item.title);
                 if (foundItem) {
                   // Удаляем с сервера и из состояния
-                  onRemove(foundItem.id);
+                  state.onRemoveItem(foundItem.id);
                 } else {
                   // Добавляем
-                  onAddToCard(item);
+                  state.onAddToCard(item);
                 }
               }}
-              isAdded={cardItems.some((cartItem) => cartItem.title === item.title)}
-              isLoading = {isLoading}
+              isAdded={state.cardItems.some((cartItem) => cartItem.title === item.title)}
+              isLoading = {state.isLoading}
 
 
             />
@@ -56,12 +61,12 @@ function Home({items, searchValue, setSearchValue, onSearchValue, onAddToCard, c
 
         {/* Поиск пиццы */}
         <div className={stylesHome.inputPizza}>
-          <h1>{searchValue ? `Поиск по запросу: ${searchValue}` : "Все пиццы"}</h1>
+          <h1>{state.searchValue ? `Поиск по запросу: ${state.searchValue}` : "Все пиццы"}</h1>
 
           <div className={stylesHome.searchBlock}>
             <img src="/img/search.png"></img>
-            <input placeholder="Поиск..."  onChange={onSearchValue} value={searchValue}></input>
-            {searchValue && <img src="/img/button-remove.svg" onClick={() => setSearchValue("")} />}
+            <input placeholder="Поиск..."  onChange={state.onSearchValue} value={state.searchValue}></input>
+            {state.searchValue && <img src="/img/button-remove.svg" onClick={() => state.setSearchValue("")} />}
           </div>
         </div>
 
