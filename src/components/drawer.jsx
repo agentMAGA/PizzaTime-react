@@ -1,12 +1,15 @@
 import React from "react";
 import styles from "../styles/drawer.module.scss";
+import useCart from "../hooks/useCart";
 import { AppContext } from "../App";
 import { Link } from "react-router-dom";
 
 // Корзина
 function Drawer({ onClose }) {
 
-  const state = React.useContext(AppContext);
+  const {cardItems, totalPrice,} = useCart();
+  const {onRemoveItem} = React.useContext(AppContext);
+
 
   return (
 
@@ -19,14 +22,14 @@ function Drawer({ onClose }) {
         </div>
 
         {/* Список пицц в корзине */}
-        {state.cardItems.length > 0 ? (
+        {cardItems.length > 0 ? (
 
           // Корзина не пуста
           <>
             <div className={styles.cardItemList}>
               <div className={styles.cardItemTop}>
 
-                {state.cardItems.map((item) => (
+                {cardItems.map((item) => (
 
                   <div className={styles.cardItem}>
                     <img src={item.imgUrl} />
@@ -37,7 +40,7 @@ function Drawer({ onClose }) {
                       </div>
                     </div>
                     <div className={styles.cardItemPizzaButton}>
-                      <img src="/img/button-remove.svg" onClick={() => state.onRemoveItem(item.id)} />
+                      <img src="/img/button-remove.svg" onClick={() => onRemoveItem(item.id)} />
                     </div>
                   </div>
                 ))}
@@ -50,12 +53,7 @@ function Drawer({ onClose }) {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>250 руб.</b>
-                </li>
-                <li>
-                  <span>Налог 5%:</span>
-                  <div></div>
-                  <b>12.50 руб.</b>
+                  <b>{totalPrice} руб.</b>
                 </li>
               </ul>
               {/* Оформить заказ */}

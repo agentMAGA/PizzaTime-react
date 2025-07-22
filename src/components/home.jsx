@@ -3,6 +3,7 @@ import Card from "./card";
 import styles from "../styles/card.module.scss";
 import stylesHome from "../styles/home.module.scss";
 import { AppContext } from "../App";
+import useCart from "../hooks/useCart";
 
 
 
@@ -10,6 +11,9 @@ import { AppContext } from "../App";
 function Home(  ) {
 
   const state = React.useContext(AppContext);
+
+  
+
 
   // Рендер пицц
   const renderItems = () => {

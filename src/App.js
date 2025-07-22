@@ -56,14 +56,14 @@ function App() {
     });
   }
 
-  // Удаление из корзины
-  const onRemoveItem = (id) => {
-    axios.delete(`https://687779a8dba809d901ef8e66.mockapi.io/test/card/${id}`).then((res) => {
-      setCardItems(prev => prev.filter((item) => item.id !== id));
-    }).catch((error) => {
-      console.error('Ошибка при удалении:', error);
-    });
-  }
+      // Удаление из корзины
+      const onRemoveItem = (id) => {
+        axios.delete(`https://687779a8dba809d901ef8e66.mockapi.io/test/card/${id}`).then((res) => {
+          setCardItems(prev => prev.filter((item) => item.id !== id));
+        }).catch((error) => {
+          console.error('Ошибка при удалении:', error);
+        });
+      }
 
 
   // Поиск пиццы
@@ -83,12 +83,12 @@ function App() {
       cardOpened,
       setCardOpened,
       onAddToCard,
-      onRemoveItem,
       onSearchValue,
       searchValue,
       isLoading,
       setIsLoading,
       setSearchValue,
+      onRemoveItem,
 
     }}>
       {/* Главный контейнер */}

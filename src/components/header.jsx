@@ -1,8 +1,12 @@
 import React from "react";
 import styles from "../styles/header.module.scss";
 import { Link } from "react-router-dom";
+import useCart from "../hooks/useCart";
 
 function Header(props) {
+
+  const {cardItems, totalPrice} = useCart();
+
   return (
     // Шапка
     <header className={styles.header} >
@@ -25,13 +29,13 @@ function Header(props) {
         <ul>
           <li>
             {/* Сумма в корзине */}
-            <span>500₽</span>
+            <span>{totalPrice}₽</span>
           </li>
 
           <li>
             {/* Иконка корзины */}
             <img src="/img/korzina.svg"></img>
-            <span>3</span>
+            <span>{cardItems.length}</span>
           </li>
         </ul>
 

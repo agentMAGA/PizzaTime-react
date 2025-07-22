@@ -12,7 +12,6 @@ function Card({ title, price, imgUrl, onClickAddCard, isAdded, isLoading}) {
 
 
 
-
   return (
 
     <div className={styles.card}>
